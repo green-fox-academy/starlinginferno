@@ -1,2 +1,2 @@
-(https://github.com/starlinginferno/git-lesson-repository "cat 
-adventures")
+https://github.com/starlinginferno/git-lesson-repository "cat 
+adventures"
