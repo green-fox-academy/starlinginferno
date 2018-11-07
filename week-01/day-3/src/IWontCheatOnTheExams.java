@@ -1,15 +1,15 @@
 public class IWontCheatOnTheExams {
     public static void main(String[] args) {
 
-// Create a program that writes this line 100 times:
-// "I won't cheat on the exam!"
+        String exam = "I won't cheat on the exam!";
+        int i=1;
 
-        int a = 0;
+        for ( i=1; i <= 100; i++) {
+            System.out.println(i + ". " + exam);}
 
-        while (a < 100) {
-            System.out.println(a + ". I won't cheat on the exam!");
-            a++;
-        }
+ /* or           while (i <=100) {
+                System.out.println(i + ". " + exam);
+                i++; }   */
 
     }
 }

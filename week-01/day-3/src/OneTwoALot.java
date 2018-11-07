@@ -8,20 +8,21 @@ public class OneTwoALot {
 // If the number is two it should print: Two
 // If the number is more than two it should print: A lot
 
-        int x;
+        int num;
 
         System.out.println("Please enter a number above zero: ");
         Scanner in = new Scanner(System.in);
-        x = in.nextInt();
+        num = in.nextInt();
 
-        if (x <= 0)
-        System.out.println("Not enough");
-        if (x == 1)
-            System.out.println("One");
-        if (x == 2)
-            System.out.println("Two");
-        if (x > 2)
-            System.out.println("A lot");
+        if (num <= 0) {
+            System.out.println("Not enough.");}
+        else if (num == 1) {
+            System.out.println("One.");}
+        else if (num == 2) {
+            System.out.println("Two.");}
+        else if (num > 2) {
+            System.out.println("A Lot.");
+        }
 
 
 
