@@ -6,7 +6,24 @@ public class Reverse {
         // Use it on this reversed string to check it!
         // Try to solve this using charAt() first, and optionally anything else after.
 
-        int length = reversed.length();
+
+
+        System.out.println(reverse(reversed));
+    }
+    public static String reverse (String x) {
+        String y = "";
+        for (int i= x.length()-1; i >=0; i--) {
+            y = y + x.charAt(i);
+            //      System.out.print(x.charAt(i));
+
+        }
+        return y;
+    }
+}
+
+/* alternative solution
+
+int length = reversed.length();
         String back = "";
 
         for (int i = length-1; i >= 0; i--) {
@@ -14,5 +31,4 @@ public class Reverse {
 
 
         System.out.println(back);
-    }
-}
+ */

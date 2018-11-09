@@ -9,7 +9,7 @@ public class Triangles {
 
     public static void mainDraw(Graphics graphics) {
 
-        
+
 
     }
 

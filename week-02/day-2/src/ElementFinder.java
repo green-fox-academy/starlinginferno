@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ElementFinder {
+public class ElementFinder{
     public static void main(String... args){
         ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
         System.out.println(containsSeven(arrayList));
@@ -10,12 +10,14 @@ public class ElementFinder {
 
     }
 
-    public static String containsSeven (ArrayList<Integer> lista){
-        String answer;
-        if (lista.contains(7)){
-            answer = "Hoorray";
-        } else {
-            answer = "Noooooo";}
-            return answer;
+    public static String containsSeven (ArrayList<Integer> x) {
+        String reply = "";
+        for (int i = 0; i < x.size(); i++) {
+            if (x.contains(7)) {
+                reply = "Hoorray";
+            } else { reply = "Noooooo";}
+        }
+        return reply;
     }
+
 }

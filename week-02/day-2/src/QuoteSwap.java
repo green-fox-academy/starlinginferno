@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class QuoteSwap {
+public class QuoteSwap{
     public static void main(String... args){
         ArrayList<String> list = new ArrayList<String>(Arrays.asList("What", "I", "do", "create,", "I", "cannot", "not", "understand."));
 
@@ -15,14 +15,14 @@ public class QuoteSwap {
 
     }
 
-    public static String quoteSwap (ArrayList<String> quotation) {
-
-        quotation.set(2, "cannot");
-        quotation.set(5, "do");
-
-        String mondat = String.join(" ", quotation);
-
-
-        return mondat;
+    public static String quoteSwap (ArrayList<String> x) {
+        String sentence = "";
+        for (int i = 0; i < x.size(); i++) {
+            x.set(2, "cannot");
+            x.set(5, "do");
+            sentence += x.get(i) + " ";
+        }
+        return sentence;
     }
+
 }

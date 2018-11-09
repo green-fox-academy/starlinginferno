@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Candyshop {
+public class Candyshop{
     public static void main(String... args){
         ArrayList<Object> arrayList = new ArrayList<Object>();
         arrayList.add("Cupcake");
@@ -17,9 +17,13 @@ public class Candyshop {
         // Expected output: "Cupcake", "Croissant", "Brownie", "Ice cream"
     }
 
-    public static ArrayList<Object> sweets (ArrayList<Object>cakes){
-        cakes.set(1, "Croissant");
-        cakes.set(3, "Ice cream");
-        return cakes;
+    public static ArrayList<Object> sweets (ArrayList<Object> snack) {
+        String c = "Croissant";
+        String f = "Ice cream";
+        for (int i = 0; i < snack.size(); i++) {
+            snack.set(1, c);
+            snack.set(3, f);
+        }
+        return snack;
     }
 }
