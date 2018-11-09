@@ -2,29 +2,18 @@ import javax.swing.*;
 
 import java.awt.*;
 
+import static java.lang.Math.sqrt;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class StarryNight {
+public class Triangles {
+
     public static void mainDraw(Graphics graphics) {
-        // Draw the night sky:
-        //  - The background should be black
-        //  - The stars can be small squares
-        //  - The stars should have random positions on the canvas
-        //  - The stars should have random color (some shade of grey)
 
-        graphics.setColor(Color.BLACK);
-        graphics.fillRect(0,0,320,320);
+        
 
-
-
-        for(int i = 1; i <= 320; i++) {
-            int x = (int )(Math.random() * 320 + 1);
-            int y = (int )(Math.random() * 320 + 1);
-            int rand = (int )(Math.random() * 255 + 0);
-            graphics.setColor(new Color(rand, rand, rand));
-            graphics.fillRect(x, y, 2,2 );
-        }
     }
+
+
 
     // Don't touch the code below
     static int WIDTH = 320;

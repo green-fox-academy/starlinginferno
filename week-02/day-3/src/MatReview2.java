@@ -24,6 +24,24 @@ public class MatReview2 {
         for (int i = 0; i < 60; i+=30) {
             graphics.fillRect(i, i, 20, 20);
         }
+
+        int max = 30;
+        int min = 0;
+        int n = (int) Math.random() * (max-min + 1) + min;  // max -min
+        // 0.99 * (10-0+1) + 0
+        // 0.99 * 11 + 0
+        //    10.89 + 0;
+        // 10.9
+        //10
+
+        int n2 = (int) Math.random() * (101) + 10; // 10 -110
+
+        // 0 * (max - min + 1) + min;
+        // 0 * (10 -0 + 1) + 0;
+        // 0 * 11 + 0
+        //0 + 0
+        // 0
+
     }
 
     // Don't touch the code below

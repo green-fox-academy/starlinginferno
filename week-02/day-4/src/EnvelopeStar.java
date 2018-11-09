@@ -4,30 +4,45 @@ import java.awt.*;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class CenterBoxFunction {
-
+public class EnvelopeStar {
     public static void mainDraw(Graphics graphics){
-        // create a square drawing function that takes 1 parameter:
-        // the square size
-        // and draws a square of that size to the center of the canvas.
-        // draw 3 squares with that function.
-        // avoid code duplication.
 
-        int janos = (int )(Math.random() * 320 + 1);
+        rajzolj(graphics);
 
 
-        for (int i= 0; i < 3; i ++) {
-            rajzolj(janos, graphics);
-            janos += 10;
-     //       pos = 160 - (size/2);
+    }
+
+    public static void rajzolj (Graphics graphics) {
+
+        graphics.setColor(Color.GREEN);
+
+        int j= 0;
+        int k = 160;
+
+        for (int i = 160; i <= 320; i += 10) {      //top right
+
+            graphics.drawLine(160, j, i, 160);
+            j= j+ 10;
         }
-    }
+        for (int i = 320; i >= 160; i -= 10) {      // bottom left
 
-    public static void rajzolj (int size, Graphics graphics){
-        int pos = 160 - (size/2);
-        graphics.drawRect(pos, pos, size, size);
-    }
+            graphics.drawLine(k, 160, 160, i);
+            k= k - 10;
+        }
+        k= 160;
+        for (int i = 0; i <= 160; i += 10) {        //top left
 
+            graphics.drawLine(160, i, k, 160);
+            k-=10;
+        }
+        k= 160;
+        for (int i = 320; i >= 160; i -= 10) {      //bottom right
+
+            graphics.drawLine(i, 160, 160, k);
+            k = k + 10;
+        }
+
+    }
 
     // Don't touch the code below
     static int WIDTH = 320;

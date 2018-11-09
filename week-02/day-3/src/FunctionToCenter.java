@@ -11,9 +11,16 @@ public class FunctionToCenter {
         // and draws a line from that point to the center of the canvas.
         // Fill the canvas with lines from the edges, every 20 px, to the center.
 
+        int x=0;
+        int y=0;
+        rajzolj(x,y,graphics);
+
+    }
+
+    public static void rajzolj (int x, int y, Graphics graphics) {
         int center = 160;
-        for (int i = 0; i <= 320; i += 20) {
-            for (int j = 0; j <= 320; j += 20) {
+        for (int i = x; i <= 320; i += 20) {
+            for (int j = y; j <= 320; j += 20) {
                 if (i >=0 && j ==0) {
                     graphics.drawLine(i,0,center, center);
                 }
@@ -28,7 +35,6 @@ public class FunctionToCenter {
                 }
             }
         }
-
 
     }
 

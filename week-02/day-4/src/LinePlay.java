@@ -4,26 +4,23 @@ import java.awt.*;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class StarryNight {
-    public static void mainDraw(Graphics graphics) {
-        // Draw the night sky:
-        //  - The background should be black
-        //  - The stars can be small squares
-        //  - The stars should have random positions on the canvas
-        //  - The stars should have random color (some shade of grey)
+public class LinePlay {
+    public static void mainDraw(Graphics graphics){
 
-        graphics.setColor(Color.BLACK);
-        graphics.fillRect(0,0,320,320);
+        rajzolj(graphics);
 
 
+    }
 
-        for(int i = 1; i <= 320; i++) {
-            int x = (int )(Math.random() * 320 + 1);
-            int y = (int )(Math.random() * 320 + 1);
-            int rand = (int )(Math.random() * 255 + 0);
-            graphics.setColor(new Color(rand, rand, rand));
-            graphics.fillRect(x, y, 2,2 );
+    public static void rajzolj (Graphics graphics) {
+
+        for (int i = 0; i <= WIDTH; i += 20) {
+            graphics.setColor(Color.MAGENTA);
+            graphics.drawLine(i,0,WIDTH, i);
+            graphics.setColor(Color.GREEN);
+            graphics.drawLine (0, i, i, WIDTH);
         }
+
     }
 
     // Don't touch the code below
