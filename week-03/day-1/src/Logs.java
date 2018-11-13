@@ -16,12 +16,11 @@ public class Logs {
         try {
             Path filePath = Paths.get("./logs.txt");
             List<String> lines = Files.readAllLines(filePath);
+            System.out.println(postRatio(lines));
             System.out.println(unique(lines));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public static List<String> unique (List<String> inputArray) {
@@ -36,10 +35,19 @@ public class Logs {
                 filteredArray.add(IPs);
             }
         }
-
         return filteredArray;
-
     }
 
-
+    public static double postRatio (List<String> inputArray) {
+        double get = 0;
+        double post = 0;
+        for (int i = 0; i < inputArray.size(); i++) {
+            if (inputArray.get(i).contains("GET")) {
+                get++;
+            } else if (inputArray.get(i).contains("POST")) {
+                post++;
+            }
+        }
+        return get/post;
+    }
 }
