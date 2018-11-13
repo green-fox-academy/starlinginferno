@@ -22,7 +22,7 @@ public class Main {
                 System.out.println("I choose you, " + pokemonOfAsh.get(i).name);
             }
         }
-        
+
     }
 
     private static List<Pokemon> initializePokemons() {
