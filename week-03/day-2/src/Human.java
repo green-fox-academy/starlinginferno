@@ -14,7 +14,7 @@ public class Human {
     public static void changeAlive () {
         alive = false;
     }
-    public int getCOunt() {
+    public int getCount() {
         return count;
     }
 
