@@ -6,7 +6,6 @@ public class Main {
         a.backgroundColor = "Orange";
         a.text = "Idea1";
         a.color = "blue";
-        System.out.println(a);
 
         PostIt b = new PostIt();
         b.backgroundColor = "pink";
@@ -17,5 +16,6 @@ public class Main {
         c.backgroundColor = "yellow";
         c.text = "Superb!";
         c.color = "green";
+
     }
 }
