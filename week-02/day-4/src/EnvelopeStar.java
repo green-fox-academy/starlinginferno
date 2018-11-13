@@ -16,30 +16,14 @@ public class EnvelopeStar {
 
         graphics.setColor(Color.GREEN);
 
-        int j= 0;
-        int k = 160;
 
-        for (int i = 160; i <= 320; i += 10) {      //top right
 
-            graphics.drawLine(160, j, i, 160);
-            j= j+ 10;
-        }
-        for (int i = 320; i >= 160; i -= 10) {      // bottom left
+        for (int i = 0; i <= WIDTH/2; i += 10) {
+            for (int j = WIDTH/2; j >= 0; j--) {
+                graphics.setColor(Color.GREEN);
+                graphics.drawLine(i, WIDTH / 2, WIDTH / 2, j);
+            }
 
-            graphics.drawLine(k, 160, 160, i);
-            k= k - 10;
-        }
-        k= 160;
-        for (int i = 0; i <= 160; i += 10) {        //top left
-
-            graphics.drawLine(160, i, k, 160);
-            k-=10;
-        }
-        k= 160;
-        for (int i = 320; i >= 160; i -= 10) {      //bottom right
-
-            graphics.drawLine(i, 160, 160, k);
-            k = k + 10;
         }
 
     }

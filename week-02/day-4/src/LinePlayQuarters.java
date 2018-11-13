@@ -14,72 +14,21 @@ public class LinePlayQuarters {
 
     public static void rajzolj (Graphics graphics) {
 
+        int parting = 4;   //how many times i want it drawn on one side - has to be even (or one)
+        int Wmove = WIDTH / parting;  // how much it moves horizontally
+        int Hmove = HEIGHT / parting;  // how much it moves vertically
 
-        for (int i = 0; i <= 160; i += 10) {        //top left
-            graphics.setColor(Color.MAGENTA);
-            graphics.drawLine(i, 0, 160, i);
-
-            graphics.setColor(Color.GREEN);
-            graphics.drawLine(0, i, i, 160);
-        }
-        for (int i = 160; i <= 320; i += 10) {      //bottom right
-            graphics.setColor(Color.MAGENTA);
-            graphics.drawLine(i, 160, 320, i);
-
-            graphics.setColor(Color.GREEN);
-            graphics.drawLine(160, i, i, 320);
-        }
-        int j= 0;
-        for (int i = 160; i <= 320; i += 10) {          // top right
-            graphics.setColor(Color.MAGENTA);
-            graphics.drawLine(i, 0, 320, j);
-
-            graphics.setColor(Color.GREEN);
-            graphics.drawLine(160, j, i, 160);
-            j= j+ 10;
-        }
-        int k = 160;
-        for (int i = 320; i >= 160; i -= 10) {          // bottom left
-            graphics.setColor(Color.MAGENTA);
-            graphics.drawLine(k, 160, 160, i);
-
-            graphics.setColor(Color.GREEN);
-            graphics.drawLine(0, i, k, 320);
-            k= k - 10;
+        for (int i = 0; i <= WIDTH; i += 20) {
+            for (int j = 0; j < parting; j++) {
+                for (int k = 0; k < parting; k++) {
+                    graphics.setColor(Color.MAGENTA);
+                    graphics.drawLine(i / parting + j * Wmove, k * Hmove, WIDTH / parting + j * Wmove, i / parting + k * Hmove);
+                    graphics.setColor(Color.GREEN);
+                    graphics.drawLine(j * Wmove, i / parting + k * Hmove, i / parting + j * Wmove, WIDTH / parting + k * Hmove);
+                }
+            }
         }
     }
-  //      int a=0;
- //       forloop1(a);
-
-  //      }
-
-
- /*       for (int i = 160; i <= 320; i += 20) {
-            for (int j = 0; j <= 160; j += 20) {
-                graphics.setColor(Color.MAGENTA);
-                graphics.drawLine(i, 0, 320, j);
-
-                graphics.setColor(Color.GREEN);
-                graphics.drawLine(160, j, i, 160);
-            }
-        } */
-
- /*   public static int forloop1 (int x) {
-        for (int i = 160; i <= 320; i += 20) {
-            x= i;
-
-        }
-        return x;
-
-        }
-
-
-    public static int forloop2 (int y) {
-        for (int j = 0; j <= 160; j += 20) {
-            y = j;
-        }
-        return y;
-    } */
 
 
 

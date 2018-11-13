@@ -5,7 +5,7 @@ import java.awt.*;
 import static java.lang.Math.sqrt;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class Triangles {
+public class Triangles2 {
 
     public static void mainDraw(Graphics graphics) {
 
@@ -13,13 +13,13 @@ public class Triangles {
         int moveX = size/2;
         int moveY= (int) Math.sqrt(size*size-moveX*moveX);
 
-        for (int i =0; i <= WIDTH; i += size) {
-            for (int j = 0; j <= HEIGHT; j += moveY) {
-                graphics.drawLine(0 + i, HEIGHT - j, moveX + i, HEIGHT - moveY - j);
-                graphics.drawLine(moveX + i, HEIGHT - moveY - j, size + i, HEIGHT - j);
-                graphics.drawLine(size + i, HEIGHT - j, 0 + i, HEIGHT - j);
+        for (int i =0; i <= HEIGHT; i ++) {
+            for (int j = 0; j <= size; j ++) {
+                graphics.drawLine(WIDTH/2 - moveX, moveY, WIDTH/2, 0);
+                graphics.drawLine(WIDTH/2, 0, WIDTH/2 + moveX, moveY);
+                graphics.drawLine(WIDTH/2 + moveX, moveY, WIDTH/2 - moveX, moveY);
             }
-
+     //       size += moveX;
         }
 
     }
