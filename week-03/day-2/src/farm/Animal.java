@@ -1,10 +1,13 @@
 package farm;
 
 public class Animal {
+
+    String name = "";
     int hunger;
     int thirst;
 
-    public Animal(int hunger, int thirst) {
+    public Animal(String name, int hunger, int thirst) {
+        this.name = name;
         this.hunger = hunger;
         this.thirst = thirst;
     }

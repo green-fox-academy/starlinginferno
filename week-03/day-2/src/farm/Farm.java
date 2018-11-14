@@ -5,37 +5,33 @@ import java.util.List;
 
 public class Farm {
 
-    List<Animal> farmAnimals;
-    int slots = 6;
+    ArrayList<Animal> animalList;
 
-    public static List<Animal> animalFarm () {
-
-        List<Animal> animals = new ArrayList<>(); {
-            animals.add(new Animal (20, 60));
-            animals.add(new Animal (60, 10));
-            animals.add(new Animal (55, 72));
-            animals.add(new Animal (53, 27));
-            animals.add(new Animal (28, 91));
-
-            return animals; }
+    public Farm() {
+        this.animalList = new ArrayList<>();
     }
 
+    int slots = 6;
+
     public void breed() {
-        for (int i = 0; i < farmAnimals.size(); i++) {
-            if (farmAnimals.size() <= slots) {
-                farmAnimals.add(new Animal(50, 50));
+        for (int i = 0; i < animalList.size(); i++) {
+            if (animalList.size() <= slots) {
+                animalList.add(new Animal("cow2",50, 50));
             }
         }
     }
 
     public void slaughter() {
-        for (int i = 0; i < farmAnimals.size(); i++) {
-            for (int j = 0; j < farmAnimals.size(); j++) {
-                if (farmAnimals.get(i).hunger < farmAnimals.get(j).hunger) {
-                    farmAnimals.remove(i);
+        Animal toBeKilled = animalList.get(0);
+        for (int i = 0; i < animalList.size(); i++) {
+            for (int j = 0; j < animalList.size(); j++) {
+                if (animalList.get(i).hunger < animalList.get(j).hunger) {
+                    toBeKilled = animalList.get(i);
                 }
             }
+
         }
+        animalList.remove(toBeKilled);
     }
 
 }
