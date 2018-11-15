@@ -16,6 +16,11 @@ public class Pirate {
     public void drinkSomeRum() {
         this.consumedRum++;
         if (this.state.equals("dead")) {
+            this.state = "dead";
+        } else if (this.consumedRum > 4) {
+            this.state = "passed out";
+        } else {
+            this.state = "sober";
         }
     }
 
