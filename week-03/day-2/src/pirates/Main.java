@@ -11,6 +11,7 @@ public class Main {
         ship.fillShip();
 
 
+
         System.out.println(ship.pirateShip.size());
 
         ship.pirateShip.get(2).drinkSomeRum();

@@ -29,6 +29,8 @@ public class BattleApp {
 
         System.out.println("There was no turning back. The battle had started.");
 
+        walrus.battle(ranger);
+
         if (walrus.battle(ranger) == true) {
             System.out.println("The Walrus won and they had a celebration with lots of rum.");
             for (int k = 0; k < walrus.pirateShip.size(); k++) {

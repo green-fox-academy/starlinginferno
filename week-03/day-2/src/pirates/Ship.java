@@ -9,9 +9,12 @@ public class Ship {
     public Ship () {
 
         this.pirateShip = new ArrayList<>();
-      //  fillShip();
-
     }
+
+    public ArrayList<Pirate> getPirateShip() {
+        return pirateShip;
+    }
+
 
     public void fillShip() {
 
@@ -25,7 +28,6 @@ public class Ship {
     }
 
     public boolean battle (Ship shipB) {
-        //Ship shipA = new Ship();
         int alivePiratesA = 0;
         int alivePiratesB = 0;
         int captainABooze = pirateShip.get(0).consumedRum;
@@ -67,26 +69,6 @@ public class Ship {
             }
             return false;
         }
-
-
-
-
-
-/*
-
-
-        return shipA.pirateShip.size();*/
-
-        /*for (int i = 0; i < shipA.pirateShip.size(); i++) {
-            for (int j = 0; j < shipB.pirateShip.size(); j++) {
-                if (shipB.pirateShip.get(j).state.equals("dead")) {
-                    shipA.pirateShip.remove(j);
-                }
-            }
-            if (shipA.pirateShip.get(i).state.equals("dead")) {
-                shipA.pirateShip.remove(i);
-            }
-        }*/
     }
 
 }
