@@ -15,6 +15,9 @@ public class Reverse {
             aj[i] = aj[aj.length - i - 1];
             aj[aj.length - i - 1] = temp;
         }
+/*        for (int j = aj.length-1; j >= 0; j--) {
+            System.out.println(aj[j]);
+        }*/
 
     }
 }
