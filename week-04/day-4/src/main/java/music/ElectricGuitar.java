@@ -3,13 +3,15 @@ package main.java.music;
 public class ElectricGuitar extends StringedInstrument {
 
     public ElectricGuitar() {
-        super(6, "Twang");
+        this(6);
     }
 
     public ElectricGuitar(int numberOfStrings) {
-        super(numberOfStrings);
-        this.sound = "Twang";
+        super(numberOfStrings, "Electric Guitar");
+    }
 
-
+    @Override
+    String sound() {
+        return "Twang";
     }
 }
