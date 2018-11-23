@@ -1,3 +1,2 @@
-[Cat 
-Adventures](https://github.com/starlinginferno/git-lesson-repository)
+[My First Repo](https://github.com/starlinginferno/git-lesson-repository) 
 [ToDo-App](https://github.com/starlinginferno/todo-app)
