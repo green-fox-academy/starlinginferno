@@ -26,22 +26,22 @@ public class SymmetricMatrix {
 
         System.out.println(isSymmetric(symmetricMatrix)); // should print out true
 
-        int sum = 0;
-        for (int i = 0; i < symmetricMatrix.size(); i++) {
-            for (int j = 0; j < symmetricMatrix.get(i).size(); j++) {
-                sum += symmetricMatrix.get(i).get(j);
-            }
-        }
-
-
-            for (int i = 0; i < symmetricMatrix.size(); i++) {
-                for (int j = 0; j < symmetricMatrix.get(i).size(); j++) {
-                    int num = symmetricMatrix.get(i).get(j);
-                    if (num % 2 == 0) {
-                        symmetricMatrix.get(i).set(j, num+1);
-                    }
-                }
-            }
+//        int sum = 0;
+//        for (int i = 0; i < symmetricMatrix.size(); i++) {
+//            for (int j = 0; j < symmetricMatrix.get(i).size(); j++) {
+//                sum += symmetricMatrix.get(i).get(j);
+//            }
+//        }
+//
+//
+//            for (int i = 0; i < symmetricMatrix.size(); i++) {
+//                for (int j = 0; j < symmetricMatrix.get(i).size(); j++) {
+//                    int num = symmetricMatrix.get(i).get(j);
+//                    if (num % 2 == 0) {
+//                        symmetricMatrix.get(i).set(j, num+1);
+//                    }
+//                }
+//            }
     }
 
 
