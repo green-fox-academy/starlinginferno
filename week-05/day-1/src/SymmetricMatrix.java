@@ -20,7 +20,7 @@ public class SymmetricMatrix {
 
         ArrayList<ArrayList<Integer>> symmetricMatrix = new ArrayList<ArrayList<Integer>>();
 
-        symmetricMatrix.add(new ArrayList<Integer> (Arrays.asList(1, 0, 1)));
+        symmetricMatrix.add(new ArrayList<Integer> (Arrays.asList(1, 1, 1)));
         symmetricMatrix.add(new ArrayList<Integer> (Arrays.asList(0, 2, 2)));
         symmetricMatrix.add(new ArrayList<Integer> (Arrays.asList(1, 2, 5)));
 
@@ -46,11 +46,14 @@ public class SymmetricMatrix {
 
 
     public static boolean isSymmetric(ArrayList<ArrayList<Integer>> inputMatrix) {
+        boolean isSymmetric = false;
         for (int i = 0; i < inputMatrix.size(); i++) {
             for (int j = 0; j < inputMatrix.get(i).size(); j++) {
-                return inputMatrix.get(i).get(j) == inputMatrix.get(j).get(i);
+                if( inputMatrix.get(i).get(j) == inputMatrix.get(j).get(i)) {
+                    isSymmetric = true;
+                }
             }
         }
-        return false;
+        return isSymmetric;
     }
 }
