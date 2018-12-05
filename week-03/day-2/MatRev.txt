@@ -1,0 +1,7 @@
+Main principles of object orientation
+
+inheritance
+encapsulation !!!! (today we're concerned about this)
+abstraction
+polymorphism
+
