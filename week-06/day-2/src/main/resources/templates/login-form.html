@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login</title>
+  <link href='login-style.css' rel='stylesheet'>
+</head>
+
+<body class="centered-wrapper">
+  <form action="/loggedin" method="POST"
+  class="centered-content">
+    <div id="title" >ACCOUNT LOGIN</div>
+    <div>
+      <label for="username">USERNAME</label>
+      <input type="text" id="username" name="username" autofocus />
+    </div>
+    <div>
+      <label for="password">PASSWORD</label>
+      <input type="password" id="password" name="password" />
+      <a href="/recovery">Forgot Password?</a>
+    </div>
+    <div class="button">
+    <button type="submit" >Login</button>
+    </div>
+  </form>
+</body>
+
+</html>
