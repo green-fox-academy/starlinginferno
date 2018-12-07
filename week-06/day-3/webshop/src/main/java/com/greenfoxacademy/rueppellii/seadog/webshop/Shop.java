@@ -9,11 +9,10 @@ public class Shop {
     List<Item> store = new ArrayList<>();
 
     public Shop() {
-        store.add(new Item("Running shoes", "Nike running shoes for everyday sport", 10000, 5));
-        store.add(new Item("Printer", "Some HP Printer that will print pages", 50000, 2));
-        store.add(new Item("Coca cola", "0.5l standard coke", 300, 0));
-        store.add(new Item("Wokin", "Chicken with fried rice and WOKIN sauce", 2000, 100));
-        store.add(new Item("T-shirt", "Blue with a corgi on a bike", 6000, 1));
+    }
+
+    public List<Item> getStore() {
+        return store;
     }
 
     public void addItems(Item item) {
@@ -31,7 +30,7 @@ public class Shop {
     }
 
     public List<Item> cheapestFirst() {
-        List<Item> cheapest = new ArrayList<>();
+        List<Item> cheapest = new ArrayList<>(store);
         Collections.copy(cheapest, store);
         Collections.sort(cheapest);
         return cheapest;
@@ -40,7 +39,7 @@ public class Shop {
     public List<Item> containsKeyword(String keyword) {
         List<Item> containsK = new ArrayList<>();
         for (int i = 0; i < store.size(); i++) {
-            if(store.get(i).getDescription().toLowerCase().contains(keyword)) {
+            if(store.get(i).getDescription().toLowerCase().contains(keyword) || store.get(i).getName().toLowerCase().contains(keyword)) {
                 containsK.add(store.get(i));
             }
         }
@@ -50,7 +49,7 @@ public class Shop {
     public int averageStock() {
         int sum = 0;
         for (int i = 0; i < store.size(); i++) {
-            sum += store.get(i).getPrice();
+            sum += store.get(i).getQuantity();
         }
         return sum / store.size();
     }
