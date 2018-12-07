@@ -4,12 +4,9 @@ import com.greenfoxacademy.rueppellii.seadog.webshop.Item;
 import com.greenfoxacademy.rueppellii.seadog.webshop.Shop;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.ArrayList;
 
 @Controller
 public class WebshopController {
@@ -18,11 +15,11 @@ public class WebshopController {
 
     public WebshopController() {
         webshopObject = new Shop();
-        webshopObject.addItems(new Item("Running shoes", "Nike running shoes for everyday sport", 10000, 5));
-        webshopObject.addItems(new Item("Printer", "Some HP Printer that will print pages", 50000, 2));
-        webshopObject.addItems(new Item("Coca cola", "0.5l standard coke", 300, 0));
-        webshopObject.addItems(new Item("Wokin", "Chicken with fried rice and WOKIN sauce", 2000, 100));
-        webshopObject.addItems(new Item("T-shirt", "Blue with a corgi on a bike", 6000, 1));
+        webshopObject.addItems(new Item("Daily cream soup", "Check our facebook for today's offer!", 500, 5));
+        webshopObject.addItems(new Item("Sandwiches", "caprese, tuna, feta", 700, 2));
+        webshopObject.addItems(new Item("Macaron", "passion fruit, strawberry, lemon curd, pumpkin spice", 300, 0));
+        webshopObject.addItems(new Item("Coffee", "caramel latte", 1000, 100));
+        webshopObject.addItems(new Item("Lemonade", "hibiscus, lemon, cinnamon apple", 400, 1));
     }
 
     @RequestMapping("/webshop")

@@ -2,16 +2,17 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link href='style.css' rel='stylesheet'>
     <title>webshop</title>
 </head>
 <body>
 <nav>
 <nav></nav>
-<h1>My Shop</h1>
+<h1>Lili's Café</h1>
 <div>
     <input type="submit" value="ONLY AVAILABLE" onclick="window.location='/webshop/available';" />
     <input type="submit" value="CHEAPEST FIRST" onclick="window.location='/webshop/sort=price-asc';" />
-    <input type="submit" value="CONTAINS NIKE" onclick="window.location='/webshop/search?name=nike';" />
+    <input type="submit" value="CONTAINS LATTE" onclick="window.location='/webshop/search?name=latte';" />
     <input type="submit" value="AVERAGE STOCK" onclick="window.location='/webshop/average';" />
     <input type="submit" value="MOST EXPENSIVE AVAILABLE" onclick="window.location='/webshop/most-expensive';" />
 </div>
@@ -33,7 +34,7 @@
     <tr th:each="item : ${items}">
         <td th:text=${item.getName()}></td>
         <td th:text=${item.getDescription()}></td>
-        <td th:text=${item.getPrice()}></td>
+        <td th:text="${item.getPrice()} + ' Ft'"></td>
         <td th:text=${item.getQuantity()}></td>
     </tr>
     </tbody>
