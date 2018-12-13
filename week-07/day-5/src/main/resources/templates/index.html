@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Fox Club</title>
@@ -9,8 +9,8 @@
     <ul><li><a href="/information">Information</a></li></ul>
 </nav>
 <div>
-    <p><img src="greenfoxtransparent.png"></p>
-    <p>This is Mr. Fox. Currently living on takeaway and coffee. He knows 2 tricks.</p>
+    <p><img src="/greenfoxtransparent.png"></p>
+    <p th:text="'This is ' + ${name} + ', currently living on ' + ${food} + ' and ' +  ${drink} + '. He knows ' + ${tricks} + ' tricks.'"></p>
 </div>
 <div>
     <p><b>Known tricks</b></p>
