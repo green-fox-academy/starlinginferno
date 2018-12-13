@@ -1,23 +1,41 @@
 package com.greenfox.rueppellii.seadog.week07day5.foxclub;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Fox {
     private String name;
-    private List<Trick> listOfTricks;
+    private List<Trick> listOfLearnedTricks;
+    private List<Trick> listOfTricksToLearn;
     private String food;
+    private int foodCount;
     private String drink;
 
     public Fox(String name) {
         this.name = name;
+        this.food = "takeaway pizza";
+        this.drink = "coffee";
+        this.listOfLearnedTricks = new ArrayList<>();
+        this.foodCount = 0;
+    }
+
+    public void learnTrick(Trick trick) {
+        if (this.foodCount >=1) {
+            listOfLearnedTricks.add(trick);
+            listOfTricksToLearn.remove(trick);
+        }
+    }
+
+    public void feed() {
+        this.foodCount++;
     }
 
     public String getName() {
         return name;
     }
 
-    public List<Trick> getListOfTricks() {
-        return listOfTricks;
+    public List<Trick> getListOfLearnedTricks() {
+        return listOfLearnedTricks;
     }
 
     public String getFood() {
@@ -32,8 +50,8 @@ public class Fox {
         this.name = name;
     }
 
-    public void setListOfTricks(List<Trick> listOfTricks) {
-        this.listOfTricks = listOfTricks;
+    public void setListOfLearnedTricks(List<Trick> listOfTricks) {
+        this.listOfLearnedTricks = listOfTricks;
     }
 
     public void setFood(String food) {
@@ -42,5 +60,21 @@ public class Fox {
 
     public void setDrink(String drink) {
         this.drink = drink;
+    }
+
+    public int getFoodCount() {
+        return foodCount;
+    }
+
+    public void setFoodCount(int foodCount) {
+        this.foodCount = foodCount;
+    }
+
+    public List<Trick> getListOfTricksToLearn() {
+        return listOfTricksToLearn;
+    }
+
+    public void setListOfTricksToLearn(List<Trick> listOfTricksToLearn) {
+        this.listOfTricksToLearn = listOfTricksToLearn;
     }
 }

@@ -10,7 +10,9 @@
 </nav>
 <div>
     <p><img src="/greenfoxtransparent.png"></p>
-    <p th:text="'This is ' + ${name} + ', currently living on ' + ${food} + ' and ' +  ${drink} + '. He knows ' + ${tricks} + ' tricks.'"></p>
+    <p th:text="'This is ' + ${name} + ', currently living on ' + ${food} + ' and ' +  ${drink} + '. They know ' + ${tricks} + ' tricks.'"></p>
+    <p><span th:if="${hungry < 1}">This fox is hungry and cannot learn any new tricks now. <a href="/feed">Feed</a></span>
+        <span th:unless="${hungry < 1}" ><a href="/learn">Learn new trick!</a></span></p>
 </div>
 <div>
     <p><b>Known tricks</b></p>

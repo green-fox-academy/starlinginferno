@@ -25,12 +25,15 @@ public class FoxController {
     }
 
     @RequestMapping(path ="/home", method = RequestMethod.GET)
-    public String showAccounts(Model model) {
+    public String showAccounts(Model model, @RequestParam(name = "fox") String name) {
         for (Fox fox : foxes) {
-            model.addAttribute("name", fox.getName());
-            model.addAttribute("food", fox.getFood());
-            model.addAttribute("drink", fox.getDrink());
-            model.addAttribute("tricks", foxes.size());
+            if(fox.getName().equals(name)) {
+                model.addAttribute("name", fox.getName());
+                model.addAttribute("food", fox.getFood());
+                model.addAttribute("drink", fox.getDrink());
+                model.addAttribute("tricks", fox.getListOfLearnedTricks().size());
+                model.addAttribute("hungry", fox.getFoodCount());
+            }
         }
         return "index";
     }
@@ -44,9 +47,27 @@ public class FoxController {
     public String findFoxName(@RequestParam(name="fox") String s) {
         for (Fox fox : foxes) {
             if (fox.getName().equals(s)) {
-                return "redirect:/home";
+                return "redirect:/home?fox=" + s;
             }
         }
         return "foxnotfound";
+    }
+
+    @RequestMapping(path = "/signup", method = RequestMethod.GET)
+    public String addFox(Model model, @ModelAttribute(name="fox") String s) {
+        model.addAttribute("foxName", s);
+        return "signup";
+    }
+
+    @RequestMapping(path = "/signup", method = RequestMethod.POST)
+    public String addFox(@ModelAttribute(name="fox") String s) {
+        for (Fox fox : foxes) {
+            if (fox.getName().equals(s)) {
+                return "redirect:/home?fox=" + s;
+            } else {
+                foxes.add(new Fox(s));
+            }
+        }
+        return "redirect:/home?fox=" + s;
     }
 }
