@@ -1,0 +1,19 @@
+#king {
+    visibility: hidden;
+    position: relative;
+}
+
+#king::after {
+    visibility: visible;
+    content: url("crownpici.gif");
+}
+
+#notking {
+    visibility: hidden;
+    position: relative;
+}
+
+#notking::after {
+    visibility: visible;
+    content: url("sad.png");
+}

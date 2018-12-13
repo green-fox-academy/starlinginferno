@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SIMBAnk</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<table class="account-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Balance</th>
+        <th>Type</th>
+        <th>Royal Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${accounts}" th:object="${account}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{name}"></td>
+        <td th:text="|*{#numbers.formatDecimal(balance,1,2)}| + ' zebras'"></td>
+        <td th:text="*{animalType}"></td>
+        <td><span th:if="*{king}" id="king"></span>
+            <span th:unless="*{king}" id="notking"></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+
+<!--th:style="*{king} ? 'color:yellow' : 'color:none'"-->

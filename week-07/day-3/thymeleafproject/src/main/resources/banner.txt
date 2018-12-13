@@ -1,0 +1,6 @@
+${AnsiColor.RED} ####  ${AnsiColor.YELLOW}###### ${AnsiColor.GREEN}  ##   ${AnsiColor.BLUE}#####  ${AnsiColor.MAGENTA} ####  ${AnsiColor.BRIGHT_MAGENTA} ####
+${AnsiColor.RED}#      ${AnsiColor.YELLOW}#      ${AnsiColor.GREEN} #  #  ${AnsiColor.BLUE}#    # ${AnsiColor.MAGENTA}#    # ${AnsiColor.BRIGHT_MAGENTA}#    #
+${AnsiColor.RED} ####  ${AnsiColor.YELLOW}#####  ${AnsiColor.GREEN}#    # ${AnsiColor.BLUE}#    # ${AnsiColor.MAGENTA}#    # ${AnsiColor.BRIGHT_MAGENTA}#
+${AnsiColor.RED}     # ${AnsiColor.YELLOW}#      ${AnsiColor.GREEN}###### ${AnsiColor.BLUE}#    # ${AnsiColor.MAGENTA}#    # ${AnsiColor.BRIGHT_MAGENTA}#  ###
+${AnsiColor.RED}#    # ${AnsiColor.YELLOW}#      ${AnsiColor.GREEN}#    # ${AnsiColor.BLUE}#    # ${AnsiColor.MAGENTA}#    # ${AnsiColor.BRIGHT_MAGENTA}#    #
+${AnsiColor.RED} ####  ${AnsiColor.YELLOW}###### ${AnsiColor.GREEN}#    # ${AnsiColor.BLUE}#####  ${AnsiColor.MAGENTA} ####  ${AnsiColor.BRIGHT_MAGENTA} ####
