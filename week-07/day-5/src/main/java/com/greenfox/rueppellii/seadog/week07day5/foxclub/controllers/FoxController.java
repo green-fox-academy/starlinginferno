@@ -14,9 +14,10 @@ import java.util.List;
 @Controller
 public class FoxController {
 
-    private List<Fox> foxes = new ArrayList<>();
+    private List<Fox> foxes;
 
     public FoxController() {
+        foxes = new ArrayList<>();
         foxes.add(new Fox("Simba"));
         foxes.add(new Fox("Nala"));
         foxes.add(new Fox("Timon"));
@@ -33,6 +34,7 @@ public class FoxController {
                 model.addAttribute("drink", fox.getDrink());
                 model.addAttribute("tricks", fox.getListOfLearnedTricks().size());
                 model.addAttribute("hungry", fox.getFoodCount());
+                model.addAttribute("learned", fox.getListOfLearnedTricks());
             }
         }
         return "index";
@@ -54,20 +56,21 @@ public class FoxController {
     }
 
     @RequestMapping(path = "/signup", method = RequestMethod.GET)
-    public String addFox(Model model, @ModelAttribute(name="fox") String s) {
-        model.addAttribute("foxName", s);
+    public String addFox(Model model, @ModelAttribute(name="fox") Fox fox) {
+        model.addAttribute("fox", fox);
         return "signup";
     }
 
     @RequestMapping(path = "/signup", method = RequestMethod.POST)
-    public String addFox(@ModelAttribute(name="fox") String s) {
-        for (Fox fox : foxes) {
-            if (fox.getName().equals(s)) {
-                return "redirect:/home?fox=" + s;
+    public String addFox(@ModelAttribute(name="fox") Fox fox) {
+        for (int i = 0; i < foxes.size(); i++) {
+            if (foxes.get(i).getName().equals(fox.getName())) {
+                return "redirect:/home?fox=" + fox.getName();
             } else {
-                foxes.add(new Fox(s));
+                foxes.add(fox);
             }
+
         }
-        return "redirect:/home?fox=" + s;
+        return "redirect:/home?fox=" + fox.getName();
     }
 }

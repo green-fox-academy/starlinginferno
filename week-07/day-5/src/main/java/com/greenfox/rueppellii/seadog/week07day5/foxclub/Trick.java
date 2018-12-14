@@ -2,9 +2,10 @@ package com.greenfox.rueppellii.seadog.week07day5.foxclub;
 
 public class Trick {
 
-    String trickDescription;
+    private String trickDescription;
 
     public Trick() {
+        trickDescription = "Code in Java";
     }
 
     public String getTrickDescription() {

@@ -13,7 +13,7 @@ public class Fox {
 
     public Fox(String name) {
         this.name = name;
-        this.food = "takeaway pizza";
+        this.food = "takeout pizza";
         this.drink = "coffee";
         this.listOfLearnedTricks = new ArrayList<>();
         this.foodCount = 0;

@@ -7,9 +7,9 @@
 <body>
 
 <div>
-    <form action="#" th:action="@{/signup}" method="post">
+    <form action="#" th:action="@{/signup}" method="post" th:object="${fox}">
         <label for="name">Name</label>
-        <input type="text" name="fox" id="name" required autofocus>
+        <input type="text" name="name" id="name" th:field="*{name}" required autofocus>
         <button type="submit">GO</button>
     </form>
 </div>
