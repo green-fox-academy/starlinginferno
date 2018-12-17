@@ -7,13 +7,14 @@
 <body>
 
 <div>
-    <form action="#" th:action="@{/nutritionstore}" method="post">
-        <select name="food">
-            <option value="fiat" selected>takeout pizza</option>
-            <option value="fiat" selected>McDonald's</option>
-            <option value="fiat" selected>soup</option>
-            <option value="fiat" selected>chips</option>
+    <form action="#" th:object="${fox}" th:action="@{/nutritionstore}" method="post">
+        <select name="name" th:*field="*{food}">
+            <option value="pizza" selected>takeout pizza</option>
+            <option value="mcdonalds" selected>McDonald's</option>
+            <option value="soup" selected>soup</option>
+            <option value="chips" selected>chips</option>
         </select>
+        <button type="submit">FEED</button>
     </form>
 </div>
 

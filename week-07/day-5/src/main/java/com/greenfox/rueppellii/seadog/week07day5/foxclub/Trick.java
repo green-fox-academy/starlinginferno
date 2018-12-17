@@ -4,8 +4,8 @@ public class Trick {
 
     private String trickDescription;
 
-    public Trick() {
-        trickDescription = "Code in Java";
+    public Trick(String s) {
+        trickDescription = s;
     }
 
     public String getTrickDescription() {

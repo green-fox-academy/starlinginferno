@@ -8,15 +8,16 @@
 <nav>
     <ul><li><a href="/information">Information</a></li></ul>
 </nav>
-<div>
+<div th:object="${fox}">
     <p><img src="/greenfoxtransparent.png"></p>
-    <p th:text="'This is ' + ${name} + ', currently living on ' + ${food} + ' and ' +  ${drink} + '. They know ' + ${tricks} + ' tricks.'"></p>
-    <p><span th:if="${hungry < 1}">This fox is hungry and cannot learn any new tricks now. <a href="/nutritionstore">Feed</a></span>
-        <span th:unless="${hungry < 1}" ><a href="/learn">Learn new trick!</a></span></p>
+    <p th:text="'This is ' + *{name} + ', currently living on ' + *{food} + ' and ' +  *{drink} + '. They know ' + *{listOfLearnedTricks.size()} + ' tricks.'"></p>
+    <p><span th:if="*{foodCount < 1}">This fox is hungry and cannot learn any new tricks now. <a th:href="'/nutritionstore?fox=' + *{name}">FEED</a>
+    </span>
+        <span th:unless="*{foodCount < 1}"><a href="/learn"> Learn new trick!</a></span>
 </div>
-<div>
+<div th:object="${fox}">
     <p><b>Known tricks</b></p>
-    <ul th:each="trick : ${learned}">
+    <ul th:each="trick : *{listOfLearnedTricks}">
         <li th:text="${trick.getTrickDescription()}"></li>
     </ul>
 </div>

@@ -25,23 +25,33 @@ public class FoxController {
         foxes.add(new Fox("Scar"));
     }
 
+//    @RequestMapping(path ="/home", method = RequestMethod.GET)
+//    public String showFox(Model model, @RequestParam(name = "fox") String name) {
+//        for (Fox fox : foxes) {
+//            if(fox.getName().equals(name)) {
+//                model.addAttribute("name", fox.getName());
+//                model.addAttribute("food", fox.getFood());
+//                model.addAttribute("drink", fox.getDrink());
+//                model.addAttribute("tricks", fox.getListOfLearnedTricks().size());
+//                model.addAttribute("hungry", fox.getFoodCount());
+//                model.addAttribute("learned", fox.getListOfLearnedTricks());
+//            }
+//        }
+//        return "index";
+//    }
+
     @RequestMapping(path ="/home", method = RequestMethod.GET)
-    public String showAccounts(Model model, @RequestParam(name = "fox") String name) {
-        for (Fox fox : foxes) {
-            if(fox.getName().equals(name)) {
-                model.addAttribute("name", fox.getName());
-                model.addAttribute("food", fox.getFood());
-                model.addAttribute("drink", fox.getDrink());
-                model.addAttribute("tricks", fox.getListOfLearnedTricks().size());
-                model.addAttribute("hungry", fox.getFoodCount());
-                model.addAttribute("learned", fox.getListOfLearnedTricks());
+    public String showFox(Model model, @ModelAttribute(name = "fox") Fox fox) {
+        for (int i = 0; i < foxes.size(); i++) {
+            if(foxes.get(i).getName().equals(fox.getName())) {
+                model.addAttribute("fox", fox);
             }
         }
         return "index";
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
-    public String findFoxName(Model model) {
+    public String findFoxName() {
         return "login";
     }
 
@@ -69,8 +79,26 @@ public class FoxController {
             } else {
                 foxes.add(fox);
             }
-
         }
         return "redirect:/home?fox=" + fox.getName();
     }
+
+    @RequestMapping(path = "/nutritionstore", method = RequestMethod.GET)
+    public String feedFoxGet(@RequestParam(name="fox") String s, @ModelAttribute(name = "fox") Fox fox) {
+
+        return "restaurant";
+    }
+
+    @RequestMapping(path = "/nutritionstore", method = RequestMethod.POST)
+    public String feedFox(Model model, @RequestParam(value = "fox") String s, @ModelAttribute(name = "fox") Fox fox) {
+//        model.addAttribute("fox", fox);
+        for (int i = 0; i < foxes.size(); i++) {
+            if (fox.getName().equals(s)) {
+                model.addAttribute("name", fox);
+                foxes.get(i).setFood(fox.getFood());
+            }
+        }
+        return "redirect:/home?fox=" + s;
+    }
+
 }

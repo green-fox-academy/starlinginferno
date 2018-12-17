@@ -16,7 +16,9 @@ public class Fox {
         this.food = "takeout pizza";
         this.drink = "coffee";
         this.listOfLearnedTricks = new ArrayList<>();
-        this.foodCount = 0;
+        listOfLearnedTricks.add(new Trick("Break keyboard"));
+        listOfLearnedTricks.add(new Trick("Cry over Java codes"));
+        this.foodCount = 1;
     }
 
     public void learnTrick(Trick trick) {
