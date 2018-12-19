@@ -7,15 +7,16 @@
     <title>To Do List</title>
 </head>
 <body>
-<h1>Todos</h1>
-<h2>New Todo</h2>
-<div>
+<h1 class="text-center">Todos</h1>
+<h2 class="text-center">New Todo</h2>
+<div class="text-center">
     <form action="#" th:action="@{/todo/}" method="post" th:object="${todoObject}">
         <label for="name">Task</label>
         <input type="text" id="name" th:field="*{title}" required autofocus>
         <button type="submit">GO</button>
     </form>
 </div>
+<a th:href="@{/todo/assignees/}" class="text-center">Assignees</a>
 <h3>Search</h3>
 <div>
     <form action="#" th:action="@{/todo/search/}" method="POST">

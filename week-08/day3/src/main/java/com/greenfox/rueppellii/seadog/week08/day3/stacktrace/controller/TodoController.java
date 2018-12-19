@@ -54,12 +54,6 @@ public class TodoController {
         return "redirect:/todo/";
     }
 
-//    @RequestMapping(value="/", method = RequestMethod.GET)
-//    public String byKeyword(@RequestParam("search") String keyword, Model model, @ModelAttribute(name="todo") List<Todo> listKeyword) {
-//        model.addAttribute("todo", service.findByKeyword(keyword));
-//        return "todo";
-//    }
-
     @RequestMapping(value="/search", method = RequestMethod.POST)
     public String byKeyword(@RequestParam("keyword") String keyword, Model model, @ModelAttribute(name="todoObject") Todo todo) {
         model.addAttribute("todo", service.findByKeyword(keyword));

@@ -1,19 +1,24 @@
 package com.greenfox.rueppellii.seadog.week08.day3.stacktrace;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
+@Table(name="Todos")
 public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Temporal(TemporalType.DATE)
+    private Date createdAt;
     private String title;
     private Boolean urgent = false;
     private Boolean done = false;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="assignee_id")
+    private Assignee assignee;
 
     public Todo(String title) {
         this.title = title;
@@ -52,5 +57,21 @@ public class Todo {
 
     public void setDone(Boolean done) {
         this.done = done;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Assignee getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(Assignee assignee) {
+        this.assignee = assignee;
     }
 }
