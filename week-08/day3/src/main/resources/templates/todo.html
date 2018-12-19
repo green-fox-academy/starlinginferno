@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+    <title>To Do List</title>
+</head>
+<body>
+<h1>Todos</h1>
+<h2>New Todo</h2>
+<div>
+    <form action="#" th:action="@{/todo/}" method="post" th:object="${todoObject}">
+        <label for="name">Task</label>
+        <input type="text" id="name" th:field="*{title}" required autofocus>
+        <button type="submit">GO</button>
+    </form>
+</div>
+<h3>Search</h3>
+<div>
+    <form action="#" th:action="@{/todo/search/}" method="POST">
+        <label for="search">Task</label>
+        <input type="text" name="keyword" id="search">
+        <input type="submit" value="SEARCH"/>
+    </form>
+</div>
+<div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ACTION</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="todoItem : ${todo}">
+            <td th:style="*{todoItem.getDone()} ? 'text-decoration : line-through' : ''" th:styleappend=" *{todoItem.getUrgent()} ? 'color: red' : ''" th:text="${todoItem.getTitle()}"></td>
+            <td> <form action="#" th:action="@{|${todoItem.getId()}/delete|}" method="POST">
+                <p><input th:type="submit" value="delete" class="btn btn-danger" /></p></form></td>
+            <td><a th:href="@{|${todoItem.getId()}/edit|}" class="btn btn-primary">Edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+</body>
+</html>
