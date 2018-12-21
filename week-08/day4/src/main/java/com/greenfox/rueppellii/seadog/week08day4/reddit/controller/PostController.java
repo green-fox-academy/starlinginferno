@@ -79,14 +79,14 @@ public class PostController {
     public String seePost(@PathVariable(value="postID") Long id, Model model, @ModelAttribute(name="newComment") Comment comment) {
         Post post = postService.findPostByID(id);
         model.addAttribute("originalPost", post);
-        model.addAttribute("comments", commentService.listCommentsByVote());
+        model.addAttribute("comments", commentService.findCommentsByID(id));
         return "content";
     }
 
     @PostMapping("/{postID}/post")
     public String addComment(@PathVariable(value="postID") Long id, @ModelAttribute(name="newComment") Comment comment, Model model) {
         model.addAttribute("originalPostObject", postService.findPostByID(id));
-        commentService.saveNewComment(comment);
+        commentService.addCommentByPostId(id, comment);
         return "redirect:/reddit/{postID}/post";
     }
 
