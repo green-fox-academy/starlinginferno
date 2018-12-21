@@ -1,6 +1,8 @@
 package com.greenfox.rueppellii.seadog.week08day4.reddit.controller;
 
+import com.greenfox.rueppellii.seadog.week08day4.reddit.Comment;
 import com.greenfox.rueppellii.seadog.week08day4.reddit.Post;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.service.CommentService;
 import com.greenfox.rueppellii.seadog.week08day4.reddit.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +16,12 @@ import java.util.Optional;
 public class PostController {
 
     private PostService postService;
+    private CommentService commentService;
 
     @Autowired
-    public PostController(PostService postService) {
+    public PostController(PostService postService, CommentService commentService) {
         this.postService = postService;
+        this.commentService = commentService;
     }
 
     @GetMapping("/")
@@ -36,13 +40,6 @@ public class PostController {
     public String submit(@ModelAttribute(name="postItemObject") Post post) {
         postService.saveNewPost(post);
         return "redirect:/reddit/";
-    }
-
-    @GetMapping("/{postID}/post")
-    public String seePost(@PathVariable(value="postID") Long id, Model model) {
-        Post post = postService.findPostByID(id);
-        model.addAttribute("postContent", post);
-        return "content";
     }
 
     @PostMapping("/{postID}/up")
@@ -75,4 +72,22 @@ public class PostController {
         postService.saveNewPost(post);
         return "redirect:/reddit/";
     }
+
+    // Comments
+
+    @GetMapping("/{postID}/post")
+    public String seePost(@PathVariable(value="postID") Long id, Model model, @ModelAttribute(name="newComment") Comment comment) {
+        Post post = postService.findPostByID(id);
+        model.addAttribute("originalPost", post);
+        model.addAttribute("comments", commentService.listCommentsByVote());
+        return "content";
+    }
+
+    @PostMapping("/{postID}/post")
+    public String addComment(@PathVariable(value="postID") Long id, @ModelAttribute(name="newComment") Comment comment, Model model) {
+        model.addAttribute("originalPostObject", postService.findPostByID(id));
+        commentService.saveNewComment(comment);
+        return "redirect:/reddit/{postID}/post";
+    }
+
 }

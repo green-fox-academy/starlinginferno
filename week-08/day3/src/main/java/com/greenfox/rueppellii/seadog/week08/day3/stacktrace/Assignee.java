@@ -12,7 +12,7 @@ public class Assignee {
     private Long id;
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Todo> todoList;
 
     public Long getId() {
