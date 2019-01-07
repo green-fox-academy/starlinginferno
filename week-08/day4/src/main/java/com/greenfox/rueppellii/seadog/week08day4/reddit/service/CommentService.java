@@ -2,6 +2,7 @@ package com.greenfox.rueppellii.seadog.week08day4.reddit.service;
 
 import com.greenfox.rueppellii.seadog.week08day4.reddit.Comment;
 import com.greenfox.rueppellii.seadog.week08day4.reddit.CommentRepository;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.Post;
 import com.greenfox.rueppellii.seadog.week08day4.reddit.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,12 +35,25 @@ public class CommentService {
         postService.saveCommentForPost(postId, comment);
     }
 
+    public void deleteCommentByPostId(Long postId, Comment comment) {
+//        postService.deleteCommentFromUnderPost(postId, comment);
+    }
+
+    public void editCommentByPostId(Long postId, Comment comment) {
+    }
+
     public Iterable<Comment> findCommentsByID(Long id) {
         return commentRepository.findAllByPost_IdOrderByCreatedAt(id);
     }
 
     public Comment findCommentByIDs(Long postId, Long commentId) {
         return commentRepository.findCommentByPost_IdAndId(postId, commentId);
+    }
+
+    public void deleteCommentFromUnderPost(Long postId, Long commentId) {
+        Post post = postService.findPostByID(postId);
+        post.getComments().remove(findCommentByIDs(postId, commentId));
+        postRepository.save(post);
     }
 
     public Comment findCommentByPostId(Long postId) {

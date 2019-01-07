@@ -15,7 +15,6 @@ import java.util.Optional;
 public class PostService {
 
     private PostRepository postRepository;
-    private CommentRepository commentRepository;
 
     @Autowired
     public PostService(PostRepository postRepository) {
@@ -55,4 +54,10 @@ public class PostService {
         post.getComments().add(comment);
         postRepository.save(post);
     }
+
+//    public void editCommentUnderPost(Long id, Comment comment) {
+//        Post post = findPostByID(id);
+//        commentRepository.findCommentByPost_IdAndId(id, comment.getId());
+//
+//    }
 }

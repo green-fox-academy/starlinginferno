@@ -90,4 +90,15 @@ public class PostController {
         return "redirect:/reddit/{postID}/post";
     }
 
+    @PostMapping("/{postID}/post/delete")
+    public String deleteComment(@PathVariable(value="postID") Long id, @ModelAttribute(name="commentId") Long comId) {
+        commentService.deleteCommentFromUnderPost(id, comId);  //doesn't work!!!!!
+        return "redirect:/reddit/{postID}/post";
+    }
+
+    @PostMapping("/{postID}/post/edit")
+    public String editComment(@PathVariable(value="postID") Long id, @ModelAttribute(name="commentToEdit") Comment comment) {
+        return "redirect:/reddit/{postID}/post";
+    }
+
 }

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Alias</title>
+</head>
+<body>
+<form action="#" th:action="@{/save-link}" method="POST" th:object="${URL}">
+    <label for="url">URL</label>
+    <input type="text" id="url" th:field="*{originalURL}" required autofocus>
+    <br>
+    <label for="alias">Alias</label>
+    <input type="text" id="alias" th:field="*{shortenedURL}" required>
+    <button type="submit">SUBMIT</button>
+</form>
+</body>
+</html>
