@@ -1,7 +1,9 @@
 package com.greenfox.rueppellii.seadog.exampractice.practice2.services;
 
 import com.greenfox.rueppellii.seadog.exampractice.practice2.models.Attraction;
+import com.greenfox.rueppellii.seadog.exampractice.practice2.models.AttractionList;
 import com.greenfox.rueppellii.seadog.exampractice.practice2.repositories.AttractionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ public class AttractionService {
 
     private AttractionRepository attractionRepository;
 
+    @Autowired
     public AttractionService(AttractionRepository attractionRepository) {
         this.attractionRepository = attractionRepository;
     }
@@ -38,5 +41,11 @@ public class AttractionService {
         cheapest.add(findCheapest("park"));
         cheapest.add(findCheapest("museum"));
         return cheapest;
+    }
+
+    public AttractionList listCheapestClass() {
+        AttractionList attractions = new AttractionList();
+        attractions.setAttractions(listCheapest());
+        return attractions;
     }
 }
