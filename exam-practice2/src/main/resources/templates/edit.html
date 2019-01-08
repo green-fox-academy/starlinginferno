@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Attraction</title>
+</head>
+<body>
+<form action="#" th:action="@{|/edit/${attractionToEdit.getId()}|}" method="post" th:object="${attractionToEdit}">
+    <label for="name">Name</label>
+    <input type="text" id="name" th:field="*{name}" required autofocus>
+    <br>
+    <label for="city">City</label>
+    <input type="text" id="city" th:field="*{city}" required>
+    <br>
+    <label for="price">Price</label>
+    <input type="text" id="price" th:field="*{price}" required>
+    <br>
+    <label for="longitude">Longitude</label>
+    <input type="text" id="longitude" th:field="*{longitude}" required placeholder="#.####">
+    <br>
+    <label for="latitude">Latitude</label>
+    <input type="text" id="latitude" th:field="*{latitude}" required placeholder="#.####">
+    <br>
+    <label for="category">Category</label>
+    <input type="text" id="category" th:field="*{category}" required>
+    <br>
+    <label for="duration">Duration</label>
+    <input type="text" id="duration" th:field="*{duration}" required>
+    <br>
+    <label for="recommendedage">Recommended Age</label>
+    <input type="text" id="recommendedage" th:field="*{recommendedAge}" required>
+    <button type="submit">SAVE</button>
+</form>
+</body>
+</html>

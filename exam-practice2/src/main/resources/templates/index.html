@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Attractions</title>
+</head>
+<body>
+<nav>
+<a th:href="@{/add}">Add New Attraction</a>
+</nav>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Price</th>
+        <th>Coordinates</th>
+        <th>Category</th>
+        <th>Duration</th>
+        <th>Recommended Age</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="attraction : ${attractions}" th:object="${attraction}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{name}"></td>
+        <td th:text="*{city}"></td>
+        <td th:text="*{price}"></td>
+        <td th:text="${attraction.getLongitude()} + ' / ' + ${attraction.getLatitude()}"> </td>
+        <td th:text="*{category}"></td>
+        <td th:text="*{duration}"></td>
+        <td th:text="*{recommendedAge}"></td>
+        <td><a th:href="@{|/edit/${attraction.getId()}|}">Click here to edit</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
