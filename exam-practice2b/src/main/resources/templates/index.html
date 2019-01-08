@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Attractions</title>
+</head>
+<body>
+<nav>
+    <a th:href="@{/}">Add New Attraction</a>
+</nav>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Price</th>
+        <th>Coordinates</th>
+        <th>Category</th>
+        <th>Duration</th>
+        <th>Recommended Age</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="attraction : ${attractions}" th:object="${attraction}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{name}"></td>
+        <td th:text="*{city}"></td>
+        <td th:text="*{price}"></td>
+        <td th:text="${attraction.getLongitude()} + ' / ' + ${attraction.getLatitude()}"> </td>
+        <td th:text="*{category}"></td>
+        <td th:text="*{duration}"></td>
+        <td th:text="*{recommendedAge}"></td>
+        <td><a th:href="@{|/edit/${attraction.getId()}|}">Click here to edit</a></td>
+    </tr>
+    </tbody>
+</table>
+<form action="#" th:action="@{/add}" method="post" th:object="${attractionToEdit}">
+    <input hidden th:field="*{id}">
+    <label for="name2">Name</label>
+    <input type="text" id="name2" th:field="*{name}" required autofocus>
+    <br>
+    <label for="city2">City</label>
+    <input type="text" id="city2" th:field="*{city}" required>
+    <br>
+    <label for="price">Price</label>
+    <input type="text" id="price" th:field="*{price}" required>
+    <br>
+    <label for="longitude">Longitude</label>
+    <input type="text" id="longitude" th:field="*{longitude}" required placeholder="#.####">
+    <br>
+    <label for="latitude">Latitude</label>
+    <input type="text" id="latitude" th:field="*{latitude}" required placeholder="#.####">
+    <br>
+    <label for="category">Category</label>
+    <input type="text" id="category" th:field="*{category}" required>
+    <br>
+    <label for="duration">Duration</label>
+    <input type="text" id="duration" th:field="*{duration}" required>
+    <br>
+    <label for="recommendedage">Recommended Age</label>
+    <input type="text" id="recommendedage" th:field="*{recommendedAge}" required>
+    <button type="submit">SAVE</button>
+</form>
+</body>
+</html>
