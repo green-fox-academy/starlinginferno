@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Our 3 most popular pizza types</title>
+</head>
+<body>
+<ul th:each="pizza : ${mostPopular}">
+    <li th:text="${pizza}"></li>
+</ul>
+</body>
+</html>

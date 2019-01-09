@@ -21,7 +21,10 @@ public class URLService {
     }
 
     public URLString findURLbyAlias(String alias) {
-        return urlRepository.findByShortenedURL(alias);
+        if (urlRepository.findByShortenedURL(alias).isPresent()) {
+            return urlRepository.findByShortenedURL(alias).get();
+        }
+        return null;
     }
 
     public Iterable<URLString> showURLs() {
