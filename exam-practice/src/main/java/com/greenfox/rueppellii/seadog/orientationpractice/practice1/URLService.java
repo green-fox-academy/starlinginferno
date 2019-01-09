@@ -27,6 +27,17 @@ public class URLService {
         return null;
     }
 
+    public URLString findURLById(Long id) {
+        if (urlRepository.findById(id).isPresent()) {
+            return urlRepository.findById(id).get();
+        }
+        return null;
+    }
+
+    public void deleteURL(Long id) {
+        urlRepository.deleteById(id);
+    }
+
     public Iterable<URLString> showURLs() {
         return urlRepository.findAll();
     }

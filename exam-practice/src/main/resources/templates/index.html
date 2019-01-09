@@ -5,6 +5,8 @@
     <title>Alias</title>
 </head>
 <body>
+<div th:if="${success}" th:text="${success}"></div>
+<div th:if="${error}" th:text="${error}"></div>
 <form action="#" th:action="@{/save-link}" method="POST" th:object="${URL}">
     <label for="url">URL</label>
     <input type="text" id="url" th:field="*{originalURL}" required autofocus>

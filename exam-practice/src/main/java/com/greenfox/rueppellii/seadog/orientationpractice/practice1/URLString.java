@@ -1,5 +1,7 @@
 package com.greenfox.rueppellii.seadog.orientationpractice.practice1;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +16,7 @@ public class URLString {
     private Long id;
     private String originalURL;
     private String shortenedURL;
+    @JsonIgnore
     private Long code;
     private Long counter;
 
