@@ -59,16 +59,20 @@
                 </td>
                 <td th:text="*{content}"></td>
                 <td th:text="*{createdAt}"></td>
-                <td> <form action="#" th:action="'/reddit/' + ${originalPost.getId()} + '/post/delete'" method="POST">
+                <td> <form action="#" th:action="'/reddit/' + ${originalPost.getId()} + '/post/' + ${comment.getId()} + '/delete'" method="POST">
                     <!--<input th:type="hidden" th:name="commentId" th:field="*{id}"/>-->
                     <p><input th:type="submit" value="delete" class="btn btn-danger" /></p></form>
-                    <br><a th:href="'/reddit/' + ${originalPost.getId()} + '/post/edit'" class="btn btn-primary">Edit</a></td>
+                    <a th:href="'/reddit/' + ${originalPost.getId()} + '/post/' + ${comment.getId()} + '/edit'">
+                        <p><input th:type="submit" value="edit" class="btn btn-primary" /></p></a>
+                    <!--<br><a th:href="'/reddit/' + ${originalPost.getId()} + '/post/' + ${comment.getId()} + '/edit'" class="btn btn-primary">Edit</a>-->
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="text-center">
-        <form action="#" th:action="'/reddit/' + ${originalPost.getId()} + '/post'" method="post" th:object="${newComment}">
+        <form action="#" th:action="'/reddit/' + ${originalPost.getId()} + '/post/add'" method="post" th:object="${commentToEdit}">
+            <input hidden th:field="*{id}">
             <label for="txtBox">Add comment</label><br>
             <textarea id="txtBox" rows="9" cols="50" maxlength="1000" placeholder="Type your comment here" th:field="*{content}" required></textarea>
             <button type="submit" class="btn btn-primary">SUBMIT</button>

@@ -18,7 +18,6 @@ public class URLController {
     @Autowired
     public URLController(URLService urlService) {
         this.urlService = urlService;
-
     }
 
     @GetMapping("/")

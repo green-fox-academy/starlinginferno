@@ -14,51 +14,37 @@ public class CommentService {
 
     private CommentRepository commentRepository;
     private PostRepository postRepository;
-    private PostService postService;
+ //   private PostService postService;
 
     @Autowired
     public CommentService(CommentRepository commentRepository, PostRepository postRepository, PostService postService) {
         this.commentRepository = commentRepository;
         this.postRepository = postRepository;
-        this.postService = postService;
-    }
-
-//    public Iterable<Comment> listCommentsByVote() {
-//        return commentRepository.findAllByOrderByVoteDesc();
-//    }
-
-    public void saveNewComment(Comment comment) {
-        commentRepository.save(comment);
+//        this.postService = postService;
     }
 
     public void addCommentByPostId(Long postId, Comment comment) {
-        postService.saveCommentForPost(postId, comment);
-    }
-
-    public void deleteCommentByPostId(Long postId, Comment comment) {
-//        postService.deleteCommentFromUnderPost(postId, comment);
-    }
-
-    public void editCommentByPostId(Long postId, Comment comment) {
+//        postService.saveCommentForPost(postId, comment);
     }
 
     public Iterable<Comment> findCommentsByID(Long id) {
         return commentRepository.findAllByPost_IdOrderByCreatedAt(id);
     }
 
-    public Comment findCommentByIDs(Long postId, Long commentId) {
-        return commentRepository.findCommentByPost_IdAndId(postId, commentId);
-    }
-
     public void deleteCommentFromUnderPost(Long postId, Long commentId) {
-        Post post = postService.findPostByID(postId);
-        post.getComments().remove(findCommentByIDs(postId, commentId));
+        Post post = postRepository.findById(postId).get();
+        post.getComments().remove(commentRepository.findById(commentId).get());
         postRepository.save(post);
     }
 
-    public Comment findCommentByPostId(Long postId) {
-        return commentRepository.findCommentByPost_Id(postId);
+    public Comment findComment(Long id) {
+        if (commentRepository.findById(id).isPresent()) {
+            return commentRepository.findById(id).get();
+        }
+        return null;
     }
+
+}
 
 //    public void upVoteComment(Long id) {
 //        Comment comment = findCommentByID(id);
@@ -71,8 +57,3 @@ public class CommentService {
 //        comment.setVote(comment.getVote() - 1);
 //        commentRepository.save(comment);
 //    }
-
-    public void deleteCommentById(Long id) {
-        commentRepository.deleteById(id);
-    }
-}

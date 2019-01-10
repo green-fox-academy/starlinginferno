@@ -15,10 +15,12 @@ import java.util.Optional;
 public class PostService {
 
     private PostRepository postRepository;
+    private CommentRepository commentRepository;
 
     @Autowired
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, CommentRepository commentRepository) {
         this.postRepository = postRepository;
+        this.commentRepository = commentRepository;
     }
 
     public Iterable<Post> listEverythingByVote() {
@@ -51,13 +53,24 @@ public class PostService {
 
     public void saveCommentForPost(Long id, Comment comment) {
         Post post = findPostByID(id);
-        post.getComments().add(comment);
-        postRepository.save(post);
+        int match = 0;
+        boolean foundMatch = false;
+        for (int i = 0; i < post.getComments().size(); i++) {
+            if (post.getComments().get(i).getId().equals(comment.getId())) {
+                match = i;
+                foundMatch = true;
+            }
+        }
+        if (foundMatch) {
+            post.getComments().get(match).setContent(comment.getContent());
+            comment.setPost(post);
+            commentRepository.save(post.getComments().get(match));
+            postRepository.save(post);
+        } else {
+            post.getComments().add(comment);
+            comment.setPost(post);
+            commentRepository.save(comment);
+            postRepository.save(post);
+        }
     }
-
-//    public void editCommentUnderPost(Long id, Comment comment) {
-//        Post post = findPostByID(id);
-//        commentRepository.findCommentByPost_IdAndId(id, comment.getId());
-//
-//    }
 }

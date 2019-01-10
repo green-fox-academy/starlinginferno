@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -76,28 +77,37 @@ public class PostController {
     // Comments
 
     @GetMapping("/{postID}/post")
-    public String seePost(@PathVariable(value="postID") Long id, Model model, @ModelAttribute(name="newComment") Comment comment) {
+    public String seePost(@PathVariable(value="postID") Long id, Model model, @ModelAttribute(name="commentToEdit") Comment comment) {
+        model.addAttribute("commentToEdit", comment);
         Post post = postService.findPostByID(id);
         model.addAttribute("originalPost", post);
         model.addAttribute("comments", commentService.findCommentsByID(id));
         return "content";
     }
 
-    @PostMapping("/{postID}/post")
-    public String addComment(@PathVariable(value="postID") Long id, @ModelAttribute(name="newComment") Comment comment, Model model) {
-        model.addAttribute("originalPostObject", postService.findPostByID(id));
-        commentService.addCommentByPostId(id, comment);
+    @PostMapping("/{postID}/post/add")
+    public String addComment(@PathVariable(value="postID") Long id, @ModelAttribute(name="comment") Comment comment, Model model) {
+     //   model.addAttribute("originalPostObject", postService.findPostByID(id));
+//        if (comment != null) {
+//            commentService.findComment(comment.getId()).setContent(comment.getContent());
+//        }
+//        commentService.addCommentByPostId(id, comment);
+        postService.saveCommentForPost(id, comment);
         return "redirect:/reddit/{postID}/post";
     }
 
-    @PostMapping("/{postID}/post/delete")
-    public String deleteComment(@PathVariable(value="postID") Long id, @ModelAttribute(name="commentId") Long comId) {
-        commentService.deleteCommentFromUnderPost(id, comId);  //doesn't work!!!!!
+    @GetMapping("/{postID}/post/{commentID}/edit")
+    public String editComment(@PathVariable(value="postID") Long postID, @PathVariable(value="commentID") Long commentID, RedirectAttributes attributes) {
+        if (commentService.findComment(commentID) != null) {
+            attributes.addFlashAttribute("commentToEdit", commentService.findComment(commentID));
+            // postService.saveCommentForPost(postID, commentService.findComment(commentID));
+        }
         return "redirect:/reddit/{postID}/post";
     }
 
-    @PostMapping("/{postID}/post/edit")
-    public String editComment(@PathVariable(value="postID") Long id, @ModelAttribute(name="commentToEdit") Comment comment) {
+    @PostMapping("/{postID}/post/{commentID}/delete")
+    public String deleteComment(@PathVariable(value="postID") Long postID, @PathVariable(value="commentID") Long commentID) {
+        commentService.deleteCommentFromUnderPost(postID, commentID);
         return "redirect:/reddit/{postID}/post";
     }
 

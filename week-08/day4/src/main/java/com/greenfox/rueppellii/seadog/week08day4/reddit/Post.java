@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Post {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> comments;
 
     public Post(String title, String content) {
@@ -32,6 +33,7 @@ public class Post {
     public Post() {
         this.vote = 0;
         this.createdAt = new Date();
+        comments = new ArrayList<>();
     }
 
     public Long getId() {
