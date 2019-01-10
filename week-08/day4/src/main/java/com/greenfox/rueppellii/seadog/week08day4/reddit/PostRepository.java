@@ -8,5 +8,7 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 
     Iterable<Post> findAllByOrderByVoteDesc();
 
+    Iterable<Post> findAllByTitleContainsOrContentContains(String keyword, String keyword2);
+
 
 }

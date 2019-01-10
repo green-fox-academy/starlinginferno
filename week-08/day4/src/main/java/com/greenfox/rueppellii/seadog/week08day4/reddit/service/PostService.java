@@ -1,9 +1,6 @@
 package com.greenfox.rueppellii.seadog.week08day4.reddit.service;
 
-import com.greenfox.rueppellii.seadog.week08day4.reddit.Comment;
-import com.greenfox.rueppellii.seadog.week08day4.reddit.CommentRepository;
-import com.greenfox.rueppellii.seadog.week08day4.reddit.Post;
-import com.greenfox.rueppellii.seadog.week08day4.reddit.PostRepository;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,5 +69,24 @@ public class PostService {
             commentRepository.save(comment);
             postRepository.save(post);
         }
+    }
+
+    public void deleteCommentFromUnderPost(Long postId, Long commentId) {
+        Post post = postRepository.findById(postId).get();
+        Comment comment = commentRepository.findById(commentId).get();
+        post.getComments().remove(comment);
+        commentRepository.delete(comment);
+        postRepository.save(post);
+    }
+
+    public PostDTO listPostsInJson() {
+        PostDTO postDTO = new PostDTO();
+        postDTO.setPosts(postRepository.findAll());
+        postDTO.setPostCount(postRepository.count());
+        return postDTO;
+    }
+
+    public Iterable<Post> searchPostsAndTitlesByKeyword(String keyword) {
+        return postRepository.findAllByTitleContainsOrContentContains(keyword, keyword);
     }
 }

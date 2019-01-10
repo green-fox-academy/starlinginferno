@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.MissingFormatArgumentException;
+import java.util.MissingResourceException;
 import java.util.Optional;
 
 @Controller
@@ -39,8 +41,12 @@ public class PostController {
 
     @PostMapping("/submit")
     public String submit(@ModelAttribute(name="postItemObject") Post post) {
-        postService.saveNewPost(post);
-        return "redirect:/reddit/";
+        if (!post.getTitle().isEmpty() && !post.getContent().isEmpty()) {
+            postService.saveNewPost(post);
+            return "redirect:/reddit/";
+        } else {
+            throw new UnsupportedOperationException("Please fill out the fields!");
+        }
     }
 
     @PostMapping("/{postID}/up")
@@ -86,12 +92,7 @@ public class PostController {
     }
 
     @PostMapping("/{postID}/post/add")
-    public String addComment(@PathVariable(value="postID") Long id, @ModelAttribute(name="comment") Comment comment, Model model) {
-     //   model.addAttribute("originalPostObject", postService.findPostByID(id));
-//        if (comment != null) {
-//            commentService.findComment(comment.getId()).setContent(comment.getContent());
-//        }
-//        commentService.addCommentByPostId(id, comment);
+    public String addComment(@PathVariable(value="postID") Long id, @ModelAttribute(name="comment") Comment comment) {
         postService.saveCommentForPost(id, comment);
         return "redirect:/reddit/{postID}/post";
     }
@@ -107,8 +108,14 @@ public class PostController {
 
     @PostMapping("/{postID}/post/{commentID}/delete")
     public String deleteComment(@PathVariable(value="postID") Long postID, @PathVariable(value="commentID") Long commentID) {
-        commentService.deleteCommentFromUnderPost(postID, commentID);
+        postService.deleteCommentFromUnderPost(postID, commentID);
         return "redirect:/reddit/{postID}/post";
+    }
+
+    @PostMapping("/search")
+    public String searchPostsAndTitles(@RequestParam("keyword") String keyword, Model model, @ModelAttribute("postItem")Post post) {
+        model.addAttribute("posts", postService.searchPostsAndTitlesByKeyword(keyword));
+        return "index";
     }
 
 }

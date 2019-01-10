@@ -1,5 +1,7 @@
 package com.greenfox.rueppellii.seadog.week08day4.reddit;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,7 +15,9 @@ public class Comment {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
+    @JsonBackReference
     @ManyToOne
+    @JoinColumn(name="post_id")
     private Post post;
 
     public Comment(String content) {

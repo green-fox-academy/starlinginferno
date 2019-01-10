@@ -10,6 +10,13 @@
     <a th:href="@{/reddit/submit}">Submit new post</a>
 </nav>
 <div>
+    <form action="#" th:action="@{/reddit/search}" method="post">
+        <label for="search">Task</label>
+        <input type="text" name="keyword" id="search">
+        <input type="submit" value="SEARCH"/>
+    </form>
+</div>
+<div>
     <table class="table table-striped">
         <thead>
         <tr>

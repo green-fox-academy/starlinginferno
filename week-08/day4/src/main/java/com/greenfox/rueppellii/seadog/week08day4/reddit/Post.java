@@ -1,5 +1,7 @@
 package com.greenfox.rueppellii.seadog.week08day4.reddit;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
@@ -17,11 +19,11 @@ public class Post {
     private Integer vote;
     private String title;
     private String content;
-    private String url;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "post")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "post", targetEntity = Comment.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     public Post(String title, String content) {
@@ -66,14 +68,6 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public Date getCreatedAt() {
