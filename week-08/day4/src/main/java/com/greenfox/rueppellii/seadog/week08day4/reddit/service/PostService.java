@@ -89,4 +89,40 @@ public class PostService {
     public Iterable<Post> searchPostsAndTitlesByKeyword(String keyword) {
         return postRepository.findAllByTitleContainsOrContentContains(keyword, keyword);
     }
+
+    public void upvoteComment(Long postId, Long commentId) {
+        Post post = findPostByID(postId);
+        int match = 0;
+        boolean foundMatch = false;
+        for (int i = 0; i < post.getComments().size(); i++) {
+            if (post.getComments().get(i).getId().equals(commentId)) {
+                match = i;
+                foundMatch = true;
+            }
+        }
+        if (foundMatch) {
+            post.getComments().get(match).setVote(post.getComments().get(match).getVote() + 1);
+            commentRepository.findById(commentId).get().setPost(post);
+            commentRepository.save(commentRepository.findById(commentId).get());
+            postRepository.save(post);
+        }
+    }
+
+    public void downvoteComment(Long postId, Long commentId) {
+        Post post = findPostByID(postId);
+        int match = 0;
+        boolean foundMatch = false;
+        for (int i = 0; i < post.getComments().size(); i++) {
+            if (post.getComments().get(i).getId().equals(commentId)) {
+                match = i;
+                foundMatch = true;
+            }
+        }
+        if (foundMatch) {
+            post.getComments().get(match).setVote(post.getComments().get(match).getVote() - 1);
+            commentRepository.findById(commentId).get().setPost(post);
+            commentRepository.save(commentRepository.findById(commentId).get());
+            postRepository.save(post);
+        }
+    }
 }
