@@ -1,5 +1,6 @@
-package com.greenfox.rueppellii.seadog.week08day4.reddit;
+package com.greenfox.rueppellii.seadog.week08day4.reddit.repositories;
 
+import com.greenfox.rueppellii.seadog.week08day4.reddit.models.Comment;
 import org.springframework.data.repository.CrudRepository;
 
 public interface CommentRepository extends CrudRepository<Comment, Long> {

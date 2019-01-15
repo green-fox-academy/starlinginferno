@@ -1,33 +1,43 @@
-package com.greenfox.rueppellii.seadog.week08day4.reddit;
+package com.greenfox.rueppellii.seadog.week08day4.reddit.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.models.Comment;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-public class Comment {
+public class Post {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer vote;
+    private String title;
     private String content;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name="post_id")
-    private Post post;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "post", targetEntity = Comment.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
-    public Comment(String content) {
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
+    public Post(String title, String content) {
         this();
+        this.title = title;
         this.content = content;
     }
 
-    public Comment() {
+    public Post() {
         this.vote = 0;
         this.createdAt = new Date();
+        comments = new ArrayList<>();
     }
 
     public Long getId() {
@@ -46,6 +56,14 @@ public class Comment {
         this.vote = vote;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getContent() {
         return content;
     }
@@ -62,11 +80,11 @@ public class Comment {
         this.createdAt = createdAt;
     }
 
-    public Post getPost() {
-        return post;
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

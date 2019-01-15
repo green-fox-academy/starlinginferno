@@ -1,8 +1,7 @@
-package com.greenfox.rueppellii.seadog.week08day4.reddit;
+package com.greenfox.rueppellii.seadog.week08day4.reddit.repositories;
 
+import com.greenfox.rueppellii.seadog.week08day4.reddit.models.Post;
 import org.springframework.data.repository.CrudRepository;
-
-import java.util.List;
 
 public interface PostRepository extends CrudRepository<Post, Long> {
 

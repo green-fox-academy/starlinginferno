@@ -1,6 +1,6 @@
-package com.greenfox.rueppellii.seadog.week08day4.reddit;
+package com.greenfox.rueppellii.seadog.week08day4.reddit.models;
 
-import java.util.List;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.models.Post;
 
 public class PostDTO {
 

@@ -1,41 +1,37 @@
-package com.greenfox.rueppellii.seadog.week08day4.reddit;
+package com.greenfox.rueppellii.seadog.week08day4.reddit.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.hibernate.validator.constraints.URL;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-public class Post {
-
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer vote;
-    private String title;
     private String content;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "post", targetEntity = Comment.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Comment> comments;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name="post_id")
+    private Post post;
 
-    public Post(String title, String content) {
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
+    public Comment(String content) {
         this();
-        this.title = title;
         this.content = content;
     }
 
-    public Post() {
+    public Comment() {
         this.vote = 0;
         this.createdAt = new Date();
-        comments = new ArrayList<>();
     }
 
     public Long getId() {
@@ -54,14 +50,6 @@ public class Post {
         this.vote = vote;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getContent() {
         return content;
     }
@@ -78,11 +66,11 @@ public class Post {
         this.createdAt = createdAt;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public Post getPost() {
+        return post;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setPost(Post post) {
+        this.post = post;
     }
 }

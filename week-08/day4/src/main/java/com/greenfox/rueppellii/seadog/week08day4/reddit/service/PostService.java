@@ -1,23 +1,27 @@
 package com.greenfox.rueppellii.seadog.week08day4.reddit.service;
 
-import com.greenfox.rueppellii.seadog.week08day4.reddit.*;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.models.Comment;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.models.Post;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.models.PostDTO;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.models.User;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.repositories.CommentRepository;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.repositories.PostRepository;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PostService {
 
     private PostRepository postRepository;
     private CommentRepository commentRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public PostService(PostRepository postRepository, CommentRepository commentRepository) {
+    public PostService(PostRepository postRepository, CommentRepository commentRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;
+        this.userRepository = userRepository;
     }
 
     public Iterable<Post> listEverythingByVote() {
@@ -46,6 +50,20 @@ public class PostService {
 
     public void deletePostById(Long id) {
         postRepository.deleteById(id);
+    }
+
+
+    // Comments
+
+    public Iterable<Comment> findCommentsByID(Long id) {
+        return commentRepository.findAllByPost_IdOrderByCreatedAt(id);
+    }
+
+    public Comment findComment(Long id) {
+        if (commentRepository.findById(id).isPresent()) {
+            return commentRepository.findById(id).get();
+        }
+        return null;
     }
 
     public void saveCommentForPost(Long id, Comment comment) {
@@ -124,5 +142,11 @@ public class PostService {
             commentRepository.save(commentRepository.findById(commentId).get());
             postRepository.save(post);
         }
+    }
+
+    // Users
+
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 }

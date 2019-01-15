@@ -1,8 +1,7 @@
 package com.greenfox.rueppellii.seadog.week08day4.reddit.controller;
 
-import com.greenfox.rueppellii.seadog.week08day4.reddit.Comment;
-import com.greenfox.rueppellii.seadog.week08day4.reddit.Post;
-import com.greenfox.rueppellii.seadog.week08day4.reddit.service.CommentService;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.models.Comment;
+import com.greenfox.rueppellii.seadog.week08day4.reddit.models.Post;
 import com.greenfox.rueppellii.seadog.week08day4.reddit.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,21 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.MissingFormatArgumentException;
-import java.util.MissingResourceException;
-import java.util.Optional;
-
 @Controller
 @RequestMapping("/reddit")
 public class PostController {
 
     private PostService postService;
-    private CommentService commentService;
 
     @Autowired
-    public PostController(PostService postService, CommentService commentService) {
+    public PostController(PostService postService) {
         this.postService = postService;
-        this.commentService = commentService;
     }
 
     @GetMapping("/")
@@ -87,7 +80,7 @@ public class PostController {
         model.addAttribute("commentToEdit", comment);
         Post post = postService.findPostByID(id);
         model.addAttribute("originalPost", post);
-        model.addAttribute("comments", commentService.findCommentsByID(id));
+        model.addAttribute("comments", postService.findCommentsByID(id));
         return "content";
     }
 
@@ -99,8 +92,8 @@ public class PostController {
 
     @GetMapping("/{postID}/post/{commentID}/edit")
     public String editComment(@PathVariable(value="postID") Long postID, @PathVariable(value="commentID") Long commentID, RedirectAttributes attributes) {
-        if (commentService.findComment(commentID) != null) {
-            attributes.addFlashAttribute("commentToEdit", commentService.findComment(commentID));
+        if (postService.findComment(commentID) != null) {
+            attributes.addFlashAttribute("commentToEdit", postService.findComment(commentID));
             // postService.saveCommentForPost(postID, commentService.findComment(commentID));
         }
         return "redirect:/reddit/{postID}/post";
