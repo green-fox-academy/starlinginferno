@@ -1,8 +1,8 @@
 package com.greenfox.rueppellii.tribes2.authentication.controllers;
 
+import com.greenfox.rueppellii.tribes2.authentication.models.ApplicationUser;
 import com.greenfox.rueppellii.tribes2.authentication.models.ToDo;
 import com.greenfox.rueppellii.tribes2.authentication.models.ToDoDTO;
-import com.greenfox.rueppellii.tribes2.authentication.models.User;
 import com.greenfox.rueppellii.tribes2.authentication.models.UserDTO;
 import com.greenfox.rueppellii.tribes2.authentication.services.ToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +21,16 @@ public class ToDoController {
     }
 
     @GetMapping("/")
-    public Iterable<User> listUsers() {
+    public Iterable<ApplicationUser> listUsers() {
         return toDoService.listUsers();
     }
 
     @PostMapping("/register")
     public String giveMeUser(@RequestBody UserDTO userObject) {
-        User user = new User();
-        user.setUserName(userObject.getUserName());
-        user.setPassword(userObject.getPassword());
-        toDoService.saveUser(user);
+        ApplicationUser applicationUser = new ApplicationUser();
+        applicationUser.setUsername(userObject.getUsername());
+        applicationUser.setPassword(userObject.getPassword());
+        toDoService.saveUser(applicationUser);
         return "redirect:/";
     }
 

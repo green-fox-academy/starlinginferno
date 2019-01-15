@@ -13,10 +13,11 @@ public class ToDo {
     private String title;
     private String detail;
 
-    @JsonBackReference
+//    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
+//    @JoinTable(name="user_todo_list", joinColumns = @JoinColumn(name="to_do_id", referencedColumnName = "id"),
+//        inverseJoinColumns = @JoinColumn(name="application_user_id", referencedColumnName = "id"))
+    private ApplicationUser applicationUser;
 
     public ToDo() {
     }
@@ -50,11 +51,11 @@ public class ToDo {
         this.detail = detail;
     }
 
-    public User getUser() {
-        return user;
+    public ApplicationUser getApplicationUser() {
+        return applicationUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setApplicationUser(ApplicationUser applicationUser) {
+        this.applicationUser = applicationUser;
     }
 }

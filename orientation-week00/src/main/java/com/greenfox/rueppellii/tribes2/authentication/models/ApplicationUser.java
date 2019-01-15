@@ -7,25 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class User {
+//@Table(name="user")
+public class ApplicationUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String userName;
+    private String username;
     private String password;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "user", targetEntity = ToDo.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JsonManagedReference
+//    mappedBy = "user",
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ToDo> toDos;
 
-    public User() {
+    public ApplicationUser() {
         this.toDos = new ArrayList<>();
     }
 
-    public User(String userName, String password) {
+    public ApplicationUser(String userName, String password) {
         this();
-        this.userName = userName;
+        this.username = userName;
         this.password = password;
     }
 
@@ -37,12 +39,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
