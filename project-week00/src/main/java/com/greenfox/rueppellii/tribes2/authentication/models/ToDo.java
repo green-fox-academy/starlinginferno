@@ -13,10 +13,9 @@ public class ToDo {
     private String title;
     private String detail;
 
-//    @JsonBackReference
+    @JsonBackReference
     @ManyToOne
-//    @JoinTable(name="user_todo_list", joinColumns = @JoinColumn(name="to_do_id", referencedColumnName = "id"),
-//        inverseJoinColumns = @JoinColumn(name="application_user_id", referencedColumnName = "id"))
+    @JoinColumn(name="application_user_id")
     private ApplicationUser applicationUser;
 
     public ToDo() {

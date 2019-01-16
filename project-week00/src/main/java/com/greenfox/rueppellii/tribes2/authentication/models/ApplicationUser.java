@@ -16,9 +16,8 @@ public class ApplicationUser {
     private String username;
     private String password;
 
-//    @JsonManagedReference
-//    mappedBy = "user",
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "applicationUser", targetEntity = ToDo.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ToDo> toDos;
 
     public ApplicationUser() {
