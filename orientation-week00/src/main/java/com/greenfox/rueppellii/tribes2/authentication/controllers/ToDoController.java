@@ -25,14 +25,14 @@ public class ToDoController {
         return toDoService.listUsers();
     }
 
-    @PostMapping("/register")
-    public String giveMeUser(@RequestBody UserDTO userObject) {
-        ApplicationUser applicationUser = new ApplicationUser();
-        applicationUser.setUsername(userObject.getUsername());
-        applicationUser.setPassword(userObject.getPassword());
-        toDoService.saveUser(applicationUser);
-        return "redirect:/";
-    }
+//    @PostMapping("/register")
+//    public String giveMeUser(@RequestBody UserDTO userObject) {
+//        ApplicationUser applicationUser = new ApplicationUser();
+//        applicationUser.setUsername(userObject.getUsername());
+//        applicationUser.setPassword(userObject.getPassword());
+//        toDoService.saveUser(applicationUser);
+//        return "redirect:/";
+//    }
 
     @PostMapping("/{userId}/addtodo")
     public String addToDo(@RequestBody ToDoDTO toDoObject, @PathVariable Long userId) {
